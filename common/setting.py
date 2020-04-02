@@ -8,8 +8,8 @@ class Setting():
         self.SMTP_DICT = {
         "smtp_server": "smtp.exmail.qq.com",  # 发送邮件服务器
         "send_user": "tongjc@newhope.cn",  # 发送邮件的邮箱账号
-        #"send_pwd": "lqtfbacgzwwkhjbg",  # 发送邮件的账号密码
-        "send_pwd" : "Tt1140720529",
+        #"send_pwd": "xxxxxx",  # 发送邮件的账号密码
+        "send_pwd" : "xxxxxx",
         "sender": "tongjc@newhope.cn",  # 显示在邮件中的发件人,必须与send_user一致
         "receiver": ["1162856094@qq.com","1059218389@qq.com"],  # 收件邮箱地址
         "subject": "smartpig自动化测试报告",  # 邮件主题
