@@ -1,7 +1,7 @@
 # ApiTest框架
 
 基本结构：
-
+![框架结构](https://images.gitee.com/uploads/images/2020/0402/121034_3018175d_7397222.png "image-20200401134808996.png")
 
 本框架基于unittest,综合了很多大神的思想和实现方式。也有一点点自己不成熟的思考。python水平有限，槽点肯定很多，还有很多可优化封装的地方，暂时先用着吧，下个版本继续优化。
 
@@ -10,8 +10,11 @@
 ### 1.Excel读取
 
 将Excel数据转换为以表头为key，对应的每一个单元格为value的dict,并将多个dict组装到list。
+![Excel格式](https://images.gitee.com/uploads/images/2020/0402/121112_5e22cea1_7397222.png "image-20200401135826080.png")
 
 得到list[dict{}],即List<Map<K,V>>
+
+![从Excel获取到的数据](https://images.gitee.com/uploads/images/2020/0402/121139_c3caffa5_7397222.png "image-20200401140227046.png")
 
 ### 2.根据用例名称对应，手写case
 
@@ -41,13 +44,19 @@
 
 ### 3.测试报告
 
-
+![测试报告展示](https://images.gitee.com/uploads/images/2020/0402/121214_80c71b1f_7397222.png "image-20200401141643275.png")
 
 ## 第二版本
 
 ### 1.日志模块
 
+![日志](https://images.gitee.com/uploads/images/2020/0402/121239_16059817_7397222.png "image-20200401141314280.png")
+
 ### 2.邮件模块
+
+![邮件配置参数](https://images.gitee.com/uploads/images/2020/0402/121312_93de5160_7397222.png "image-20200401141438315.png")
+
+![多个附件邮件展示](https://images.gitee.com/uploads/images/2020/0402/121340_e28c8caf_7397222.png "image-20200401141527719.png")
 
 ### 3.setting模块
 
@@ -76,7 +85,7 @@ class NewLoginCase(MyBase):
                     depend_data = 
                   opexcel.get_response_data(result_dict[i['depend_id']],i['depend_data']) #获取依赖的返回数据                    
                 	if method == 'delete':                        
-                    	url = os.path.join(url, depend_data) #将url拼接                    					else:                        
+                    	url = os.path.join(url, depend_data) #将url拼接                    					        else:                        
                         data = data.replace('$',depend_data)  #如果是json中的依赖参数，就替换                 except Exception as e:                    
                     atp_log.error("获取返回依赖数据失败--%s"%e)            
             result = myRequest.run_main(method, url, data)            			 					result_dict[i['id']] = result #将返回结果添加到全局字典            
@@ -92,6 +101,8 @@ class NewLoginCase(MyBase):
 
 ### 2.api参数关联问题处理
 
+![参数关联Excel设置](https://images.gitee.com/uploads/images/2020/0402/121443_a0044bba_7397222.png "image-20200401142658967.png")
+
 引入jsonpath
 
 根据depend_id找到对应的用例编号，根据用例编号找到对应的全局的result_dict，从中取出该api返回结果。根据depend_data,通过jsonpath，找到对应数据。
@@ -104,6 +115,8 @@ class NewLoginCase(MyBase):
 
 使用json文件，与对应data字段对应，则清晰明了
 
+![json文件格式](https://images.gitee.com/uploads/images/2020/0402/121512_ea3b12c5_7397222.png "image-20200401143559087.png")
+
 ### 4.requests封装
 
 根据不同的请求，get、post、delete、put等统一封装，调用一个方法即可
@@ -113,6 +126,8 @@ class NewLoginCase(MyBase):
 ### 1.测试结果回写
 
 可以直观的通过excel，知道每一个api测试结果
+
+![测试结果回写](https://images.gitee.com/uploads/images/2020/0402/121539_233821e4_7397222.png "image-20200401143949081.png")
 
 ### 2.多参数关联问题处理
 
@@ -145,3 +160,5 @@ class NewLoginCase(MyBase):
 ### 3.在测试报告中展示日志
 
 这个只需在代码关键位置print即可
+
+![报告中的日志展示](https://images.gitee.com/uploads/images/2020/0402/121605_325ed84b_7397222.png "image-20200402104841994.png")
