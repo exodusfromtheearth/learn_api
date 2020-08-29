@@ -1,7 +1,7 @@
 import xlrd,os,json
 import jsonpath
 from xlutils import copy
-from common.log import atp_log
+from common.logger1 import atp_log
 from common.setting import bases
 
 class OpExcel():

@@ -2,7 +2,7 @@ import requests
 from case.mybase import MyBase
 import json
 from common.getparam import opexcel
-from common.log import atp_log
+from common.logger1 import atp_log
 
 class LoginCase(MyBase):
     u"""通过case_name驱动"""

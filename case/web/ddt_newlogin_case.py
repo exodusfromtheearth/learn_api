@@ -8,7 +8,7 @@ import ddt,json,os
 from case.mybase import MyBase
 from common.getparam import opexcel
 from common.requestMethod import myRequest
-from common.log import atp_log
+from common.logger1 import atp_log
 
 @ddt.ddt
 class NewLoginCase(MyBase):

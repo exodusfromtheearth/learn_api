@@ -3,24 +3,24 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
 import smtplib
-from .log import atp_log
+from .logger1 import atp_log
 from .setting import bases  #引入Setting的实例化对象
 
 class MailSend():
     def send_mail(self,smtp_dict, report):
-        """
-        用于将测试报告发送到邮箱
-        :param
-        smtp_dict = {
-            "smtp_server": "发送邮件的smtp ex:smtp.126.com",
-            "send_user": "发送邮件的邮箱 ex:am1122@126.com",
-            "send_pwd": "发送邮件的邮箱密码 ex:mima",
-            "sender": "发件人邮箱用于显示收到邮件中的发件人 ex:am1122@126.com",
-            "receiver": "收件人邮箱 ex:zhangmin@hidtest.cn",多个收件人可以写成list
-            "subject": "邮件主题 ex:自动化测试报告"
-            "from":"邮件发送方 ex:smartpig自动化平台"
-        }
-        """
+
+        # #用于将测试报告发送到邮箱
+        # :param
+        # smtp_dict = {
+        #     "smtp_server": "smtp.163.com",
+        #     "send_user": "15611360995@163.com",
+        #     "send_pwd": "1230ilovu",
+        #     "sender": "15611360995@163.com",
+        #     "receiver": "xtgao@huaxing.com','WenYaGao@huaxing.com",
+        #     "subject": "接口自动化测试报告",
+        #     "from":"接口自动化平台"
+        # }
+
         # 邮件正文内容
         content = bases.CONTENT  # 获取Setting对象属性（正文内容）
         textApart = MIMEText(content)
@@ -38,8 +38,9 @@ class MailSend():
         msg['From'] = formataddr([smtp_dict["from"], smtp_dict["send_user"]])  # 设置发件人昵称
         # 发送邮件
         try:
-            smtp = smtplib.SMTP_SSL()  # QQ邮箱必须用SSL  其他可以不用
-            smtp.connect(smtp_dict["smtp_server"], port=465)  # 其他邮箱端口为25
+            # smtp = smtplib.SMTP_SSL()
+            smtp = smtplib.SMTP()# QQ邮箱必须用SSL  其他可以不用
+            smtp.connect(smtp_dict["smtp_server"], port=25)  # 其他邮箱端口为25
             smtp.login(smtp_dict["send_user"], smtp_dict["send_pwd"])
             smtp.sendmail(smtp_dict["sender"], smtp_dict["receiver"], msg.as_string())
             atp_log.info("报告邮件已发送")

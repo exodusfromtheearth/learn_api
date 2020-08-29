@@ -7,7 +7,7 @@ import requests
 from case.mybase import MyBase
 import json,re
 from common.getparam import opexcel
-from common.log import atp_log
+from common.logger1 import atp_log
 
 class LWJ_Case(MyBase):
     u"""LWJ登录成功"""

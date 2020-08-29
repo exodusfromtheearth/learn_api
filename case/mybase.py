@@ -1,7 +1,7 @@
 import unittest
 import warnings
 import requests
-from common.log import atp_log
+from common.logger1 import atp_log
 from common.getparam import OpExcel
 from common.requestMethod import RunMethod
 from common.writeResult import WriteResult

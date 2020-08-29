@@ -3,7 +3,7 @@ from case.mybase import MyBase
 import unittest,requests
 from common.getparam import opexcel
 import warnings
-from common.log import atp_log
+from common.logger1 import atp_log
 
 #print(opexcel.get_param("LoginCase_DDT"))
 #ddt_data = opexcel.get_param("LoginCase_DDT")
